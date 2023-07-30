@@ -3,7 +3,7 @@ import "./styles/game-board.css";
 import { Images } from "../../assets/Images";
 import { answersLeft } from "./ClassFishData";
 
-export const initialFishes = [
+const initialFishes = [
   {
     name: "trout",
     url: Images.trout,
@@ -21,7 +21,6 @@ export const initialFishes = [
     url: Images.shark,
   },
 ];
-
 
 export class ClassGameBoard extends Component<{
   handleScoreC: () => void;

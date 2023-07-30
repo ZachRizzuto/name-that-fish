@@ -3,7 +3,7 @@ import { useState } from "react";
 import { answersLeft } from "./FunctionalFishData.ts";
 import { Images } from "../../assets/Images.ts";
 
-export const initialFishes = [
+const initialFishes = [
   {
     name: "trout",
     url: Images.trout,
@@ -21,7 +21,6 @@ export const initialFishes = [
     url: Images.shark,
   },
 ];
-
 
 export function FunctionalGameBoard({
   handleScoreC,

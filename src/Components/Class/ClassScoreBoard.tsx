@@ -6,7 +6,6 @@ export class ClassScoreBoard extends Component<{
   correctCount: number;
   incorrectCount: number;
 }> {
-
   render() {
     const { correctCount, incorrectCount } = this.props;
     return (
