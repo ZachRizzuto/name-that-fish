@@ -48,13 +48,13 @@ To get this project setup, you should:
 
 ### Assignment Specific Requirements
 
-- [ ] Get your code to function EXACTLY like [This Site](https://name-that-fish-deployed.vercel.app/)
-- [ ] Keep state as CLEAN AS POSSIBLE
-- [ ] Place `initialFishes` in the correct component
-- [ ] Derive all pieces of state that can be derived
+- [x] Get your code to function EXACTLY like [This Site](https://name-that-fish-deployed.vercel.app/)
+- [x] Keep state as CLEAN AS POSSIBLE
+- [x] Place `initialFishes` in the correct component
+- [x] Derive all pieces of state that can be derived
 - [ ] Don't mutate state directly, only use a state setter
   - example: don't use .splice on an array that you are rendering
-- [ ] Keep all constants (variables that do not change over time) outside of components
-- [ ] Form must reset after submitting
-- [ ] Page must NOT reload after submitting
-- [ ] ClassApp Code and FunctionalApp Code should be treated as seperate apps as far as state goes
+- [x] Keep all constants (variables that do not change over time) outside of components
+- [x] Form must reset after submitting
+- [x] Page must NOT reload after submitting
+- [x] ClassApp Code and FunctionalApp Code should be treated as seperate apps as far as state goes
