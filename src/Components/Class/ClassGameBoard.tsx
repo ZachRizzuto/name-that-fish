@@ -1,39 +1,21 @@
 import { Component } from "react";
 import "./styles/game-board.css";
-import { Images } from "../../assets/Images";
-import { answersLeft } from "./ClassFishData";
-
-const initialFishes = [
-  {
-    name: "trout",
-    url: Images.trout,
-  },
-  {
-    name: "salmon",
-    url: Images.salmon,
-  },
-  {
-    name: "tuna",
-    url: Images.tuna,
-  },
-  {
-    name: "shark",
-    url: Images.shark,
-  },
-];
+import { initialFishes } from "./ClassApp";
 
 export class ClassGameBoard extends Component<{
-  handleScoreC: () => void;
-  handleScoreI: () => void;
+  handleGuess: (answer: string, guess: string) => void;
+  correctCount: number;
+  incorrectCount: number;
 }> {
   state = {
-    fishIndex: 0,
     fishGuess: "",
   };
   render() {
-    const { fishIndex, fishGuess } = this.state;
-    const { handleScoreC, handleScoreI } = this.props;
-    const nextFishToName = initialFishes[fishIndex];
+    const { handleGuess, correctCount, incorrectCount } = this.props;
+    const { fishGuess } = this.state;
+    const fishIndex = correctCount + incorrectCount;
+    const nextFishToName =
+      initialFishes[fishIndex < 4 ? fishIndex : fishIndex - 1];
     return (
       <div id="game-board">
         <div id="fish-container">
@@ -43,19 +25,10 @@ export class ClassGameBoard extends Component<{
           id="fish-guess-form"
           onSubmit={(e) => {
             e.preventDefault();
-            if (nextFishToName.name === fishGuess) {
-              handleScoreC();
-            } else {
-              handleScoreI();
-            }
+            handleGuess(nextFishToName.name, fishGuess);
             this.setState({ fishGuess: "" });
-            if (fishIndex + 1 <= initialFishes.length - 1) {
-              this.setState({ fishIndex: fishIndex + 1 });
-            }
-            answersLeft.shift();
           }}
         >
-          <div></div>
           <label htmlFor="fish-guess">What kind of fish is this?</label>
           <input
             type="text"

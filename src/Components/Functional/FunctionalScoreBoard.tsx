@@ -1,5 +1,5 @@
+import { initialFishes } from "../Class/ClassApp";
 import "./styles/score-board.css";
-import { answersLeft } from "./FunctionalFishData.ts";
 //  Where the score is presented
 
 export function FunctionalScoreBoard({
@@ -9,6 +9,8 @@ export function FunctionalScoreBoard({
   incorrectCount: number;
   correctCount: number;
 }) {
+  const fishIndex = incorrectCount + correctCount;
+  const answersLeft = initialFishes.slice(fishIndex).map((fish) => fish.name);
   return (
     <div id="score-board">
       <div>Incorrect 🔻: {incorrectCount}</div>

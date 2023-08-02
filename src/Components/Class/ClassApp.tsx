@@ -2,8 +2,27 @@ import { Component } from "react";
 import { ClassScoreBoard } from "./ClassScoreBoard";
 import { ClassGameBoard } from "./ClassGameBoard";
 import { ClassFinalScore } from "./ClassFinalScore";
-import { answersLeft } from "./ClassFishData";
 import "./styles/ClassApp.css";
+import { Images } from "../../assets/Images";
+
+export const initialFishes = [
+  {
+    name: "trout",
+    url: Images.trout,
+  },
+  {
+    name: "salmon",
+    url: Images.salmon,
+  },
+  {
+    name: "tuna",
+    url: Images.tuna,
+  },
+  {
+    name: "shark",
+    url: Images.shark,
+  },
+];
 
 export class ClassApp extends Component {
   state = {
@@ -12,7 +31,7 @@ export class ClassApp extends Component {
   };
   render() {
     const { incorrectCount, correctCount } = this.state;
-    const isOver = answersLeft.length === 0;
+    const isOver = correctCount + incorrectCount === initialFishes.length;
     return (
       <>
         <div className={isOver ? "hidden" : ""}>
@@ -21,12 +40,13 @@ export class ClassApp extends Component {
             incorrectCount={incorrectCount}
           />
           <ClassGameBoard
-            handleScoreC={() =>
-              this.setState({ correctCount: correctCount + 1 })
+            handleGuess={(answer, guess) =>
+              answer === guess
+                ? this.setState({ correctCount: correctCount + 1 })
+                : this.setState({ incorrectCount: incorrectCount + 1 })
             }
-            handleScoreI={() =>
-              this.setState({ incorrectCount: incorrectCount + 1 })
-            }
+            incorrectCount={incorrectCount}
+            correctCount={correctCount}
           />
         </div>
         {isOver && (

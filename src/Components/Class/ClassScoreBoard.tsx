@@ -1,6 +1,6 @@
 import { Component } from "react";
 import "./styles/score-board.css";
-import { answersLeft } from "./ClassFishData";
+import { initialFishes } from "./ClassApp";
 
 export class ClassScoreBoard extends Component<{
   correctCount: number;
@@ -8,6 +8,8 @@ export class ClassScoreBoard extends Component<{
 }> {
   render() {
     const { correctCount, incorrectCount } = this.props;
+    const fishIndex = incorrectCount + correctCount;
+    const answersLeft = initialFishes.slice(fishIndex).map((fish) => fish.name);
     return (
       <div id="score-board">
         <div>Incorrect 🔻: {incorrectCount}</div>
