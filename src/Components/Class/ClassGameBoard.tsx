@@ -4,16 +4,14 @@ import { initialFishes } from "./ClassApp";
 
 export class ClassGameBoard extends Component<{
   handleGuess: (answer: string, guess: string) => void;
-  correctCount: number;
-  incorrectCount: number;
+  fishIndex: number;
 }> {
   state = {
     fishGuess: "",
   };
   render() {
-    const { handleGuess, correctCount, incorrectCount } = this.props;
+    const { handleGuess, fishIndex } = this.props;
     const { fishGuess } = this.state;
-    const fishIndex = correctCount + incorrectCount;
     const nextFishToName =
       initialFishes[fishIndex < 4 ? fishIndex : fishIndex - 1];
     return (

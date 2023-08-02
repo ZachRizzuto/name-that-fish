@@ -5,10 +5,10 @@ import { initialFishes } from "./ClassApp";
 export class ClassScoreBoard extends Component<{
   correctCount: number;
   incorrectCount: number;
+  fishIndex: number;
 }> {
   render() {
-    const { correctCount, incorrectCount } = this.props;
-    const fishIndex = incorrectCount + correctCount;
+    const { correctCount, incorrectCount, fishIndex } = this.props;
     const answersLeft = initialFishes.slice(fishIndex).map((fish) => fish.name);
     return (
       <div id="score-board">

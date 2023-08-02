@@ -5,11 +5,12 @@ import "./styles/score-board.css";
 export function FunctionalScoreBoard({
   incorrectCount,
   correctCount,
+  fishIndex,
 }: {
   incorrectCount: number;
   correctCount: number;
+  fishIndex: number;
 }) {
-  const fishIndex = incorrectCount + correctCount;
   const answersLeft = initialFishes.slice(fishIndex).map((fish) => fish.name);
   return (
     <div id="score-board">

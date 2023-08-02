@@ -32,12 +32,14 @@ export class ClassApp extends Component {
   render() {
     const { incorrectCount, correctCount } = this.state;
     const isOver = correctCount + incorrectCount === initialFishes.length;
+    const fishIndex = correctCount + incorrectCount;
     return (
       <>
         <div className={isOver ? "hidden" : ""}>
           <ClassScoreBoard
             correctCount={correctCount}
             incorrectCount={incorrectCount}
+            fishIndex={fishIndex}
           />
           <ClassGameBoard
             handleGuess={(answer, guess) =>
@@ -45,8 +47,7 @@ export class ClassApp extends Component {
                 ? this.setState({ correctCount: correctCount + 1 })
                 : this.setState({ incorrectCount: incorrectCount + 1 })
             }
-            incorrectCount={incorrectCount}
-            correctCount={correctCount}
+            fishIndex={fishIndex}
           />
         </div>
         {isOver && (

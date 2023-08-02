@@ -4,15 +4,12 @@ import { initialFishes } from "../Class/ClassApp.tsx";
 
 export function FunctionalGameBoard({
   handleGuess,
-  correctCount,
-  incorrectCount,
+  fishIndex,
 }: {
   handleGuess: (answer: string, guess: string) => void;
-  correctCount: number;
-  incorrectCount: number;
+  fishIndex: number;
 }) {
   const [fishGuess, setFishGuess] = useState("");
-  const fishIndex = correctCount + incorrectCount;
   const nextFishToName =
     initialFishes[fishIndex < 4 ? fishIndex : fishIndex - 1];
   return (

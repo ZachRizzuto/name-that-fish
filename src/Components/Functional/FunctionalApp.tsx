@@ -28,12 +28,14 @@ export function FunctionalApp() {
   const [correctCount, setCorrectCount] = useState(0);
   const [incorrectCount, setIncorrectCount] = useState(0);
   const isOver = initialFishes.length === incorrectCount + correctCount;
+  const fishIndex = correctCount + incorrectCount;
   return (
     <>
       <div className={isOver ? "hidden" : ""}>
         <FunctionalScoreBoard
           correctCount={correctCount}
           incorrectCount={incorrectCount}
+          fishIndex={fishIndex}
         />
         <FunctionalGameBoard
           handleGuess={(answer, guess) =>
@@ -41,8 +43,7 @@ export function FunctionalApp() {
               ? setCorrectCount(correctCount + 1)
               : setIncorrectCount(incorrectCount + 1)
           }
-          incorrectCount={incorrectCount}
-          correctCount={correctCount}
+          fishIndex={fishIndex}
         />
       </div>
       {isOver && (
