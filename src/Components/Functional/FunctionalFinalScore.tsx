@@ -1,12 +1,11 @@
 import "./styles/final-score.css";
 export const FunctionalFinalScore = ({
   correctCount,
-  incorrectCount,
+  totalCount,
 }: {
   correctCount: number;
-  incorrectCount: number;
+  totalCount: number;
 }) => {
-  const totalCount = correctCount + incorrectCount;
   return (
     <div id="final-score">
       <h1>Your Final Score Was</h1>

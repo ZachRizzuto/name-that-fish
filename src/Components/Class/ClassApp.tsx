@@ -5,7 +5,7 @@ import { ClassFinalScore } from "./ClassFinalScore";
 import "./styles/ClassApp.css";
 import { Images } from "../../assets/Images";
 
-export const initialFishes = [
+const initialFishes = [
   {
     name: "trout",
     url: Images.trout,
@@ -31,29 +31,36 @@ export class ClassApp extends Component {
   };
   render() {
     const { incorrectCount, correctCount } = this.state;
+
     const isOver = correctCount + incorrectCount === initialFishes.length;
-    const fishIndex = correctCount + incorrectCount;
+    const totalCount = initialFishes.length;
+    const fishIndex =
+      correctCount + incorrectCount < 4
+        ? correctCount + incorrectCount
+        : totalCount - 1;
+    const answersLeft = initialFishes.slice(fishIndex).map((fish) => fish.name);
+    const handleGuess = (guess: string) => {
+      initialFishes[fishIndex].name === guess
+        ? this.setState({ correctCount: correctCount + 1 })
+        : this.setState({ incorrectCount: incorrectCount + 1 });
+    };
     return (
       <>
         <div className={isOver ? "hidden" : ""}>
           <ClassScoreBoard
             correctCount={correctCount}
             incorrectCount={incorrectCount}
-            fishIndex={fishIndex}
+            answersLeft={answersLeft}
           />
           <ClassGameBoard
-            handleGuess={(answer, guess) =>
-              answer === guess
-                ? this.setState({ correctCount: correctCount + 1 })
-                : this.setState({ incorrectCount: incorrectCount + 1 })
-            }
-            fishIndex={fishIndex}
+            handleGuess={handleGuess}
+            fishData={initialFishes[fishIndex]}
           />
         </div>
         {isOver && (
           <ClassFinalScore
             correctCount={correctCount}
-            incorrectCount={incorrectCount}
+            totalCount={totalCount}
           />
         )}
       </>

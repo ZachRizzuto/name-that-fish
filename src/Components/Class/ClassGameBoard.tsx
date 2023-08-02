@@ -1,29 +1,27 @@
 import { Component } from "react";
 import "./styles/game-board.css";
-import { initialFishes } from "./ClassApp";
+import { fishItem } from "../../types";
 
 export class ClassGameBoard extends Component<{
-  handleGuess: (answer: string, guess: string) => void;
-  fishIndex: number;
+  handleGuess: (guess: string) => void;
+  fishData: fishItem;
 }> {
   state = {
     fishGuess: "",
   };
   render() {
-    const { handleGuess, fishIndex } = this.props;
+    const { handleGuess, fishData } = this.props;
     const { fishGuess } = this.state;
-    const nextFishToName =
-      initialFishes[fishIndex < 4 ? fishIndex : fishIndex - 1];
     return (
       <div id="game-board">
         <div id="fish-container">
-          <img src={nextFishToName.url} alt={nextFishToName.name} />
+          <img src={fishData.url} alt={fishData.name} />
         </div>
         <form
           id="fish-guess-form"
           onSubmit={(e) => {
             e.preventDefault();
-            handleGuess(nextFishToName.name, fishGuess);
+            handleGuess(fishGuess);
             this.setState({ fishGuess: "" });
           }}
         >

@@ -1,27 +1,25 @@
 import "./styles/game-board.css";
 import { useState } from "react";
-import { initialFishes } from "../Class/ClassApp.tsx";
+import { fishItem } from "../../types.ts";
 
 export function FunctionalGameBoard({
   handleGuess,
-  fishIndex,
+  fishData,
 }: {
-  handleGuess: (answer: string, guess: string) => void;
-  fishIndex: number;
+  handleGuess: (guess: string) => void;
+  fishData: fishItem;
 }) {
   const [fishGuess, setFishGuess] = useState("");
-  const nextFishToName =
-    initialFishes[fishIndex < 4 ? fishIndex : fishIndex - 1];
   return (
     <div id="game-board">
       <div id="fish-container">
-        <img src={nextFishToName.url} alt={nextFishToName.name} />
+        <img src={fishData.url} alt={fishData.name} />
       </div>
       <form
         id="fish-guess-form"
         onSubmit={(e) => {
           e.preventDefault();
-          handleGuess(nextFishToName.name, fishGuess);
+          handleGuess(fishGuess);
           setFishGuess("");
         }}
       >
